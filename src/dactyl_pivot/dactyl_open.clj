@@ -576,14 +576,14 @@
     (thumb-tr-place thumb-post-tr)
     (thumb-tr-place web-post-tr)
     (thumb-tr-place thumb-post-tr)
-    (thumb-tr-place thumb-post-br))
 
-   (triangle-hulls
-     (thumb-tr-place web-post-br)
+;    (thumb-tr-place thumb-post-tl)
+;
+;    (thumb-mr-place thumb-post-tr)
+    ;(thumb-bl-place thumb-post-tr)
 
 ;;    (thumb-tr-place web-post-br)
 ;;    (thumb-tr-place web-post-tr)
-
 
 )
 ))
@@ -1004,8 +1004,8 @@
                   (with-fn 30))]
         (union
           ; screw holes below mounting holes
-          (minithumb-mr-place (ext-out :down (- -0.1 plate-thickness) (with-fn 30 (cylinder inner-radius 10))))
-          (minithumb-bl-place (ext-out :up (- -0.1 plate-thickness) (with-fn 30 (cylinder inner-radius 10))))
+          (thumb-mr-place (ext-out :down (- -0.1 plate-thickness) (with-fn 30 (cylinder inner-radius 10))))
+          (thumb-ml-place (ext-out :up (- -0.1 plate-thickness) (with-fn 30 (cylinder inner-radius 10))))
 
           ;holes for  beams connecting to finger plate arms
            (->> m3t
