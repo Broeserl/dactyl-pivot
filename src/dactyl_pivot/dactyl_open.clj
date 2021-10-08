@@ -246,26 +246,23 @@
   (apply union
          (for [column columns
                row rows
-               :when (or (.contains [(+ innercol-offset 1) (+ innercol-offset 2) (+ innercol-offset 3)] column)
-                         (and (.contains [(+ innercol-offset 4) (+ innercol-offset 5)] column) extra-row (= ncols (+ innercol-offset 6)))
-                         (and (.contains [(+ innercol-offset 4)] column) extra-row (= ncols (+ innercol-offset 5)))
-                         (and inner-column (not= row extra-cornerrow)(= column 0))
+               :when (or (.contains [(+ innercol-offset 2) (+ innercol-offset 3)] column)
+                         (and (.contains [(+ innercol-offset 4) (+ innercol-offset 5)] column) (true? extra-row) (= ncols (+ innercol-offset 6)))
+                         (and (.contains [(+ innercol-offset 4)] column) (true? extra-row) (= ncols (+ innercol-offset 5)))
+                         (and (true? inner-column) (not= row cornerrow)(= column 0))
                          (not= row lastrow))]
            (->> single-plate
+                ;                (rotate (/ π 2) [0 0 1])
                 (key-place column row)))))
 
 (def caps
   (apply union
-         (conj (for [column columns
+         (for [column columns
                row rows
-               :when (or (and (= column 0) (< row 3))
-                         (and (.contains [1 2] column) (< row 4))
-                         (.contains [3 4 5 6] column))]
-               (->> (sa-cap (if (and pinky-15u (= column lastcol) (not= row lastrow)) 1.5 1))
-                    (key-place column row)))
-               (list (key-place 0 0 (sa-cap 1))
-                 (key-place 0 1 (sa-cap 1))
-                 (key-place 0 2 (sa-cap 1))))))
+               :when (or (.contains [2 3] column)
+                         (not= row lastrow))]
+           (->> (sa-cap (if (and (true? pinky-15u) (= column lastcol)) 1.5 1))
+                (key-place column row)))))
 
 
 
@@ -331,12 +328,7 @@
 
           ;; Column connections
           (for [column columns
-                row (range 0 lastrow)
-                :when (or (.contains [(+ innercol-offset 1) (+ innercol-offset 2) (+ innercol-offset 3)] column)
-                         (and (.contains [(+ innercol-offset 4) (+ innercol-offset 5)] column) extra-row (= ncols (+ innercol-offset 6)))
-                         (and (.contains [(+ innercol-offset 4)] column) extra-row (= ncols (+ innercol-offset 5)))
-                         (and inner-column (not= row cornerrow)(= column 0))
-                         (not= row cornerrow))]
+                row (range 0 cornerrow)]
             (triangle-hulls
              (key-place column row web-post-bl)
              (key-place column row web-post-br)
