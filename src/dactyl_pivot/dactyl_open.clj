@@ -43,7 +43,7 @@
 
 (def thumb-offsets [-8 17 21])
 
-(def keyboard-z-offset 8)               ; controls overall height; original=9 with centercol=3; use 16 for centercol=2
+(def keyboard-z-offset 14)               ; controls overall height; original=9 with centercol=3; use 16 for centercol=2
 
 (def extra-width 2)                     ; extra space between the base of keys; original= 2
 (def extra-height 0.5)                  ; original= 0.5
@@ -694,19 +694,19 @@
     (minithumb-mr-place web-post-tr))
   ))
 
-;(def thumb 
-;        (union
-;          minithumb
-;          minithumb-connectors
-;        )
-;)
-
 (def thumb 
         (union
-          thumb
-          thumb-connectors
+          minithumb
+          minithumb-connectors
         )
 )
+
+;(def thumb 
+;       (union
+;         thumb
+;         thumb-connectors
+;       )
+;)
 
 ;;;;;;;;;;;;;;;;;;
 ;; Mount Holes
@@ -763,8 +763,8 @@
 )
 (def thumb-plate-holes
     (union
-        (thumb-mr-place (mount-hole :down))
-        (thumb-ml-place (mount-hole :up))
+        (minithumb-mr-place (mount-hole :down))
+        (minithumb-bl-place (mount-hole :up))
         ;(thumb-place 2 -1 (mount-hole :down))
         ;(thumb-place 0 -0.9 (mount-hole :down))
     )
@@ -931,16 +931,16 @@
         (hull 
           (->> vdisc
               (translate underthumb-pos))
-          (thumb-mr-place  (support-face :down (- -1.5 plate-thickness)))
+          (minithumb-mr-place  (support-face :down (- -1.5 plate-thickness)))
         )
-        (thumb-mr-place (support-m :down (- -0.1 plate-thickness)))
+        (minithumb-mr-place (support-m :down (- -0.1 plate-thickness)))
 
         (hull 
           (->> vdisc
               (translate underthumb-pos))
-          (thumb-ml-place  (support-face :up (- -1.5 plate-thickness)))
+          (minithumb-bl-place  (support-face :up (- -1.5 plate-thickness)))
         )
-        (thumb-ml-place (support-m :up (- -0.1 plate-thickness)))
+        (minithumb-bl-place (support-m :up (- -0.1 plate-thickness)))
 
         ; connecting from thumb support to finger plate support
         (hull
