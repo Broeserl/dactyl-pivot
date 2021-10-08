@@ -748,7 +748,7 @@
 (def finger-plate-holes
     (union
         (key-place 0 0 (mount-hole :up))
-        (key-place (+  innercol-offset 1) lastrow (mount-hole :down))
+        (key-place (+  innercol-offset 1) 3  (mount-hole :down))
         (key-place lastcol 0 (mount-hole :up))
         (key-place lastcol extra-cornerrow ( mount-hole :down))
     )
