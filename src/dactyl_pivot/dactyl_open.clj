@@ -41,7 +41,7 @@
           (>= column 4) [0 -12 5.64]    ; original [0 -5.8 5.64]
           :else [0 0 0])))
 
-(def thumb-offsets [-15 -5 9])
+(def thumb-offsets [6 -3 7])
 
 (def keyboard-z-offset 8)               ; controls overall height; original=9 with centercol=3; use 16 for centercol=2
 
@@ -315,7 +315,7 @@
           ;; Row connections
           (for [column (range (+ innercol-offset 0) (dec ncols))
                 row (range 0 nrows)
-                :when (or (.contains [(+ innercol-offset 1) (+ innercol-offset 2) ] column)
+                :when (or (.contains [(+ innercol-offset 2) ] column)
                          (and (.contains [(+ innercol-offset 4) (+ innercol-offset 5)] column) extra-row (= ncols (+ innercol-offset 6)))
                          (and (.contains [(+ innercol-offset 4)] column) extra-row (= ncols (+ innercol-offset 5)))
                          (and inner-column (not= row cornerrow)(= column 0))
@@ -338,7 +338,7 @@
           ;; Diagonal connections
           (for [column (range 0 (dec ncols))
                 row (range 0 lastrow)
-                :when (or (.contains [(+ innercol-offset 1) (+ innercol-offset 2) (+ innercol-offset 3)] column)
+                :when (or (.contains [(+ innercol-offset 2) (+ innercol-offset 3)] column)
                          (and (.contains [(+ innercol-offset 4) (+ innercol-offset 5)] column) extra-row (= ncols (+ innercol-offset 6)))
                          (and (.contains [(+ innercol-offset 4)] column) extra-row (= ncols (+ innercol-offset 5)))
                          (and inner-column (not= row cornerrow)(= column 0))
@@ -821,7 +821,7 @@
     (let [
         down-pos [0  (- 0 mount-height) 0]
       ]
-      (map + [0 0 5] (map * (key-position lastcol cornerrow down-pos) [1 1 0]))
+      (map + [0 0 5] (map * (key-position lastcol extra-cornerrow down-pos) [1 1 0]))
     )
 )
 
@@ -840,7 +840,7 @@
 )
 
 (def midpoint-lower
-    (map + midpoint-xz (map * floor-anchor-poslr [0 1 0]))
+    (map + midpoint-xz (map * floor-anchor-poslr [0 0.5 0]))
 )
 (def midpoint-upper
     (map + midpoint-xz (map * floor-anchor-posur [0 1 0]))
@@ -852,7 +852,7 @@
 )
 
 (def leftpoint-lower
-    (map + leftpoint-xz (map * floor-anchor-poslr [0 1 0]))
+    (map + leftpoint-xz (map * floor-anchor-poslr [0 0.5 0]))
 )
 (def leftpoint-upper
     (map + leftpoint-xz (map * floor-anchor-posur [0 1 0]))
@@ -911,9 +911,9 @@
       (->> vdisc
           (translate leftpoint-lower)
       )
-      (key-place  (+  innercol-offset 1) lastrow (support-face :down (- -1.5 plate-thickness)))
+      (key-place  (+  innercol-offset 1) (- lastrow 1) (support-face :down (- -1.5 plate-thickness)))
     )
-    (key-place  (+  innercol-offset 1) lastrow (support-m :down (- -0.1 plate-thickness)))
+    (key-place  (+  innercol-offset 1) (- lastrow 1) (support-m :down (- -0.1 plate-thickness)))
 
   )
 )
@@ -1083,7 +1083,7 @@
 
 (def tent-pole 
   (let [m3t (->>(cylinder inner-radius  20)
-                  (rotate (/ π 2) [1 0 0])
+                  (rotate (/ π 2) [51 0 0])
                   (with-fn 30))]
       (difference
         (union
