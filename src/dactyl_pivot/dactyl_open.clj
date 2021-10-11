@@ -840,7 +840,7 @@
 )
 
 (def midpoint-lower
-    (map + midpoint-xz (map * floor-anchor-poslr [0 0.5 0]))
+    (map + midpoint-xz (map * floor-anchor-poslr [0 1 0]))
 )
 (def midpoint-upper
     (map + midpoint-xz (map * floor-anchor-posur [0 1 0]))
@@ -852,7 +852,7 @@
 )
 
 (def leftpoint-lower
-    (map + leftpoint-xz (map * floor-anchor-poslr [0 0.5 0]))
+    (map + leftpoint-xz (map * floor-anchor-poslr [0 1 -5]))
 )
 (def leftpoint-upper
     (map + leftpoint-xz (map * floor-anchor-posur [0 1 0]))
