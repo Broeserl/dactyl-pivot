@@ -840,7 +840,7 @@
 )
 
 (def midpoint-lower
-    (map + midpoint-xz (map * floor-anchor-poslr [0 1 0]))
+    (map + midpoint-xz (map * floor-anchor-poslr [0 0.5 0]))
 )
 (def midpoint-upper
     (map + midpoint-xz (map * floor-anchor-posur [0 1 0]))
@@ -852,7 +852,7 @@
 )
 
 (def leftpoint-lower
-    (map + leftpoint-xz (map * floor-anchor-poslr [0 1 -5]))
+    (map + leftpoint-xz (map * floor-anchor-poslr [0 0.5 -2]))
 )
 (def leftpoint-upper
     (map + leftpoint-xz (map * floor-anchor-posur [0 1 0]))
@@ -861,7 +861,7 @@
 ; position of under thumb support
 (def underthumb-pos
     (map + (map * floor-anchor-poslr [0 1 0])
-        (map * (key-position innercol-offset centerrow [0 0 0]) [1 0 1])
+        (map * (key-position innercol-offset centerrow [0 0 0]) [1 -17 0.6])
         [0 (* wall-thickness 2) 0]
     )
 )
@@ -1073,7 +1073,7 @@
 (def tent-pole-nearbottom
     (->> (sphere out-radius)
         (translate leftpoint-lower)
-        (translate [0 (* wall-thickness 4) -60]))
+        (translate [0 (* wall-thickness 4) -50]))
 )
 (def tent-pole-farbottom
     (->> (sphere out-radius)
