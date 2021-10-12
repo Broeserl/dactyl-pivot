@@ -556,7 +556,8 @@
     (thumb-mr-place web-post-tr)
     (thumb-tr-place thumb-post-bl)
     (thumb-mr-place web-post-br)
-    (thumb-tr-place thumb-post-br))
+;;    (thumb-tr-place thumb-post-br)
+)
    (triangle-hulls    ; top two to the main keyboard, starting on the left
     (thumb-tl-place thumb-post-tl)
     (thumb-tl-place web-post-tl) 
@@ -567,17 +568,8 @@
     (thumb-tr-place web-post-tl)
     (thumb-tr-place thumb-post-tr)
     (thumb-tr-place web-post-tr)
-    (thumb-tr-place thumb-post-tr)
+    (thumb-tr-place thumb-post-tr))
 
-;    (thumb-tr-place thumb-post-tl)
-;
-;    (thumb-mr-place thumb-post-tr)
-    ;(thumb-bl-place thumb-post-tr)
-
-;;    (thumb-tr-place web-post-br)
-;;    (thumb-tr-place web-post-tr)
-
-)
 ))
 ;;;;;;;;;;;;;;;;
 ;; Mini Thumb ;;
