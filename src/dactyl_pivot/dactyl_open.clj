@@ -1075,7 +1075,7 @@
 
 (def tent-pole 
   (let [m3t (->>(cylinder inner-radius  20)
-                  (rotate (/ π 2) [51 0 0])
+                  (rotate (/ π 2) [1 0 0])
                   (with-fn 30))]
       (difference
         (union
